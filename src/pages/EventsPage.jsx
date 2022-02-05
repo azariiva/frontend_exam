@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Card} from "react-bootstrap";
+import {Container, Card, Spinner} from "react-bootstrap";
 import {observer} from "mobx-react";
 
 const mapping = {
@@ -14,22 +14,25 @@ const mapping = {
 }
 
 const EventsPage = observer(() => {
-    const [content, setContent] = React.useState([]);
+    const [jsonContent, setJsonContent] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
         setLoading(true)
         fetch("https://demo-api.vsdev.space/api/elonus/events")
             .then((res) => res.json())
-            .then((data) => {
-                setContent(data)
-                setLoading(false)
-            })
+            .then(data => setJsonContent(data))
+            .then(_ => setLoading(false))
     }, [])
 
     return (
         <Container>
-            {content.map(event =>
+            loading ? (
+            <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
+                <span className="visually-hidden">Загрузка...</span>
+            </Spinner>
+            ) : (
+            {jsonContent.map(event =>
                 <Card xs={1} md={2}>
                     <Card.Title>{mapping[event.type]}</Card.Title>
                     <Card.Text>
@@ -40,7 +43,7 @@ const EventsPage = observer(() => {
                         {mapping["date"]}: {event.date}
                     </Card.Footer>
                 </Card>
-            )}
+            )})
         </Container>
     )
 })

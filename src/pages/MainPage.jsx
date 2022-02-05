@@ -4,7 +4,7 @@ import {Col, Container, Spinner, Row, Image} from "react-bootstrap";
 import ReactHtmlParser from 'react-html-parser';
 
 const MainPage = observer(() => {
-    const [content, setContent] = React.useState();
+    const [jsonContent, setJsonContent] = React.useState();
     const [loading, setLoading] = React.useState(true);
 
     React.useEffect(() => {
@@ -12,7 +12,7 @@ const MainPage = observer(() => {
         fetch("https://demo-api.vsdev.space/api/elonus/home_page")
             .then((res) => res.json())
             .then((data) => {
-                setContent(data)
+                setJsonContent(data)
                 setLoading(false)
             })
     }, []);
@@ -20,17 +20,17 @@ const MainPage = observer(() => {
     return (
         <Container>
             {loading ? (
-                <Spinner animation={"border"} role={"status"} className={"align-content-center"}>
+                <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
                     <span className="visually-hidden">Загрузка...</span>
                 </Spinner>
             ) : (
                 <Container>
-                    <Row>
-                        <Col xs={2}>
-                            {ReactHtmlParser(content.text)}
+                    <Row style={{justifyContent: "center"}}>
+                        <Col style={{width: "50%"}}>
+                            {ReactHtmlParser(jsonContent.text)}
                         </Col>
-                        <Col xs={2}>
-                            <Image src={content.image} fluid={"true"}></Image>
+                        <Col style={{width: "50%"}}>
+                            <Image src={jsonContent.image} fluid={"true"}></Image>
                         </Col>
                     </Row>
                 </Container>
