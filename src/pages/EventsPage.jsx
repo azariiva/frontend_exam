@@ -40,7 +40,7 @@ const EventsPage = observer(() => {
     }, [])
 
     return (
-        <Container>
+        <Container style={{marginTop: "1rem"}}>
             <Form/>
             {loading ? (
                     <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>

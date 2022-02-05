@@ -18,7 +18,7 @@ const MainPage = observer(() => {
     }, []);
 
     return (
-        <Container>
+        <Container style={{marginTop: "1rem"}}>
             {loading ? (
                 <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
                     <span className="visually-hidden">Загрузка...</span>

@@ -16,7 +16,7 @@ const AboutPage = observer(() => {
     }, []);
 
     return (
-        <Container>
+        <Container style={{marginTop: "1rem"}}>
             {loading ? (
                 <Spinner animation={"border"} role={"status"}>
                     <span className="visually-hidden">Загрузка...</span>
