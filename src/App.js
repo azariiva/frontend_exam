@@ -5,6 +5,7 @@ import {Switch, Route} from "react-router-dom";
 import MainPage from "./pages/MainPage"
 import AboutPage from "./pages/AboutPage";
 import LeftWidget from "./components/LeftWidget";
+import EventsPage from "./pages/EventsPage";
 
 function App() {
     return (
@@ -18,9 +19,8 @@ function App() {
                 <Col xs={9}>
                     <Switch>
                         <Route exact path={"/"} component={MainPage}/>
-                    </Switch>
-                    <Switch>
                         <Route exact path={"/about"} component={AboutPage}/>
+                        <Route exact path={"/events"} component={EventsPage}/>
                     </Switch>
                 </Col>
             </Row>

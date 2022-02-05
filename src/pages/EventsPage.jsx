@@ -13,6 +13,13 @@ const mapping = {
     "earthquake": "Землетрясение"
 }
 
+// function getDescription(event = {}) {
+//     switch (event.type) {
+//         case "acid_rain":
+//             return "${mapping["acid_power"]}"
+//     }
+// }
+
 const EventsPage = observer(() => {
     const [jsonContent, setJsonContent] = React.useState([]);
     const [loading, setLoading] = React.useState(true);
@@ -27,23 +34,22 @@ const EventsPage = observer(() => {
 
     return (
         <Container>
-            loading ? (
-            <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
-                <span className="visually-hidden">Загрузка...</span>
-            </Spinner>
+            {loading ? (
+                <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
+                    <span className="visually-hidden">Загрузка...</span>
+                </Spinner>
             ) : (
-            {jsonContent.map(event =>
-                <Card xs={1} md={2}>
-                    <Card.Title>{mapping[event.type]}</Card.Title>
-                    <Card.Text>
-                        {event.toString()}
-                        {mapping["victims"]}: {event.victims}
-                    </Card.Text>
-                    <Card.Footer>
-                        {mapping["date"]}: {event.date}
-                    </Card.Footer>
-                </Card>
-            )})
+                jsonContent.map(event =>
+                    <Card xs={1} md={2}>
+                        <Card.Title>{mapping[event.type]}</Card.Title>
+                        <Card.Text>
+                            {mapping["victims"]}: {event.victims}
+                        </Card.Text>
+                        <Card.Footer>
+                            {mapping["date"]}: {event.date}
+                        </Card.Footer>
+                    </Card>
+                ))}
         </Container>
     )
 })
