@@ -1,6 +1,7 @@
 import React from "react";
 import {Container, Card, Spinner, Row, Col} from "react-bootstrap";
 import {observer} from "mobx-react";
+import Form from "../components/Form";
 
 const mapping = {
     "acid_power": "Сила кислоты",
@@ -40,6 +41,7 @@ const EventsPage = observer(() => {
 
     return (
         <Container>
+            <Form/>
             {loading ? (
                     <Spinner animation={"border"} role={"status"} className={"align-jsonContent-center"}>
                         <span className="visually-hidden">Загрузка...</span>
