@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import {Col, Container, Row} from "react-bootstrap";
+import {Switch, Route} from "react-router-dom";
+import MainPage from "./pages/MainPage"
+import AboutPage from "./pages/AboutPage";
+import LeftWidget from "./components/LeftWidget";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <Header/>
+            <Row>
+                <Col xs={3}>
+                    <Sidebar location={window.location}/>
+                    <LeftWidget/>
+                </Col>
+                <Col xs={9}>
+                    <Switch>
+                        <Route exact path={"/"} component={MainPage}/>
+                    </Switch>
+                    <Switch>
+                        <Route exact path={"/about"} component={AboutPage}/>
+                    </Switch>
+                </Col>
+            </Row>
+        </div>
+    )
 }
 
-export default App;
+export default App
